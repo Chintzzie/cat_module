@@ -1,0 +1,62 @@
+Problem Statement:
+    A Computerized Adaptive testing software component needs to be constructed.
+
+Problem Analysis:
+    1.From a whole set of questions some questions are to be skipped from the test.
+    2.Questions which are to be skipped from the test should be dynamically identified based on examinee responses.
+    3.For each question skipped,the response of that question should either be ticked off as correct or incorrect.
+    4.Two sub-problems found-
+        1.Questions which are too hard for examinee to attempt
+        2.Questions which are too easy for examinee to attempt
+    5.In this project, I focused on "questions which are too hard"
+    6.The questions which are too hard for a specific examinee are to be determined by using the previous responses of the examinee
+    7.These questions are filtered out by using an algorithm named "Quest_too_hard_skipper" which is what i have synthesized by analyzing various MCQ test.
+    8.Questions picked by this algorithm are skipped from the examinee's test and the response to these questions are marked as incorrect.
+
+
+HOW 'Quest_too_hard_skipper' ALGORITHM WORKS ??
+    Implemetation of 'Quest_too_hard_skipper' ALGORITHM is present in the Quest_too_hard_skipper.js file
+    
+    1.Several times tests are conducted on all set of questions with examinees of variable knowledge.
+    2.This data is fed to the 'Quest_too_hard_skipper' algorithm.
+    3.Questions are sorted based on the no.of correct responses given as in from the supplied database
+    4.So as test progresses the difficulty level of question tends to increase.
+    5.Each time a response is given by an examinee the Quest_too_hard_skipper' algorithm is executed to decide whether the next question in the questions-order is too hard for the examinee.
+    6.if the next question is too hard for the examinee then the question is skipped .
+
+WHY WILL THE ALGORITHM WORK CORRECTLY?
+    1.The algorithm exploits the fact that questions in a test are prone to be linked together.
+    2.There are questions in the test to which answers can only be known if some other questions in the same test are answered correctly.
+
+WHEN WILL THE ALGORITHM PERFORM EFFECTIVELY?
+    Effectiveness of algorithm is proprortional to -
+            1.No. of links of a question to other questions
+            2.Total no. of questions in the test
+            3.Questions with pronounced difficulty differences.
+
+
+ HOW SAMPLE DATASET IS CREATED?
+    
+    Around 50 instances of testresponses are included in the sample dataset used for training the model.
+    Each test response inculdes 5 responses for the 5 questions in the test.
+    Here the five questions are to be thought of A,B,C,D,E.
+    The five questions are supposed to be interlinked as-
+    A,B are independent questions( memorization questions).
+    C and D are dependent on A & B resprectively.
+    C is a question which require the knowledge of A  and also some other concept.
+    So C cant be answered without the examinee knowing the answer to Question A.
+    And it is also not sufficient that examinee knowing the answer of A for correctly answering C.   
+    E is dependent on both A&B.
+    And so to answer Question E examinee should necessarily know both answers for A and B.
+
+
+WHAT MAYBE FURTHER DEVELOPMENTS ?? 
+    Only too hard questions are filtered out as of now.
+    But the same thought process can be applied to filtering out questions which are too easy given the time.
+    One such conjecture is that instead of an examinee starting out with the easiest questions ,the examinee should start the test from questions which are moderate.
+    From then on,according to the responses of examinee all the questions which are far too easy for the specific examinee can be filtered out by using an other variant of 'Quest_too_hard_skipper' algorithm.
+    By filtering out both type of questions, CAT experience amplifies to a much higher extent.
+
+WHAT ARE THE INHERENT PROBLEMS WHICH ARE SOLVED BY THE ALGORITHM:
+    Score calcuation can be performed easily as no question is left out unresponded,either the examinee or the algorithm responds to the question.
+

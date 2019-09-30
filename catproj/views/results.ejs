@@ -1,0 +1,20 @@
+<% include partials/header %>
+    <h1>Results Page</h1>
+    <%var cnt=0; var score=0,total=0;%>
+    <% suggestion.forEach(function (instance,i) { %>
+    <ul>
+        <% if(instance==0){ cnt++;%>
+            <li><h4> Need to revise the question: <%= (i+1) %></h4></li>
+        <%}else{%>
+            <% score+=weights[i]; %>
+            <%}%>
+    </ul>
+    <%total+=weights[i];%>
+    <%})%>
+
+    
+    <% if(cnt==0){%>
+        <h4>Perfect Score! No need of revising!</h4>
+    <% }%>
+    <h3>Marks: <%= score%>/<%= total %></h3>
+<% include partials/footer %>
