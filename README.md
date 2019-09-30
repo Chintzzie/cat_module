@@ -1,7 +1,7 @@
 # cat_module
 Project for computerized adaptive testing using ML
 
-The web app files are present in '/cat_proj'
+The web app files are present in '/catproj'
 
 Documentation of the project is present in Documentation.txt
 
